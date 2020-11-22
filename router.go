@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"net/http"
 
+	"github.com/artfunder/structs"
 	"github.com/julienschmidt/httprouter"
-	"github.com/steve-kaufman/artfunder/backend/models"
 )
 
 var (
@@ -91,7 +91,7 @@ func (router Router) runHandlerForAction(ctx *ServiceContext) (interface{}, erro
 
 func (router Router) returnError(w http.ResponseWriter, err error) {
 	w.WriteHeader(router.getErrorCode(err))
-	json.NewEncoder(w).Encode(models.Error{
+	json.NewEncoder(w).Encode(structs.Error{
 		Message: err.Error(),
 	})
 }
